@@ -1,13 +1,12 @@
 # Databricks notebook source
-# MAGIC %python
-# MAGIC from pyspark.sql import SparkSession, functions, types, SQLContext
-# MAGIC from pyspark.sql.types import *
-# MAGIC import pyspark.sql.functions as F
-# MAGIC import json
-# MAGIC import pandas as pd
-# MAGIC from pyspark.sql.functions import udf, col
-# MAGIC import re
-# MAGIC from datetime import datetime, timedelta
+from pyspark.sql import SparkSession, functions, types, SQLContext
+from pyspark.sql.types import *
+import pyspark.sql.functions as F
+import json
+import pandas as pd
+from pyspark.sql.functions import udf, col
+import re
+from datetime import datetime, timedelta
 
 # COMMAND ----------
 
@@ -46,73 +45,62 @@ dbutils.fs.mount(
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC display(dbutils.fs.mounts())
+# display(dbutils.fs.mounts())
 
 # COMMAND ----------
 
-# MAGIC %fs ls dbfs:/mnt/
+# %fs ls dbfs:/mnt/
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC
-# MAGIC #dbutils.fs.ls ("dbfs:/mnt/mymountpointname/")
-# MAGIC # display(dbutils.fs.ls ("dbfs:/mnt/mymountpointname/"))
-# MAGIC
-# MAGIC display(dbutils.fs.ls ("dbfs:/mnt/mymountpointname/"))
-# MAGIC
+#dbutils.fs.ls ("dbfs:/mnt/mymountpointname/")
+# display(dbutils.fs.ls ("dbfs:/mnt/mymountpointname/"))
+
+# display(dbutils.fs.ls ("dbfs:/mnt/mymountpointname/"))
+
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC df = spark.read.option("encoding", "UTF-8").format('csv').load(
-# MAGIC   '/mnt/mymountpointname/player_info.csv',
-# MAGIC   header=True,
-# MAGIC   inferSchema=True
-# MAGIC )
+df = spark.read.option("encoding", "UTF-8").format('csv').load(
+  '/mnt/mymountpointname/player_info.csv',
+  header=True,
+  inferSchema=True
+)
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC display(df)
+display(df)
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC df.createOrReplaceTempView("Players")
+df.createOrReplaceTempView("Players")
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC from datetime import datetime, timedelta
-# MAGIC from pyspark.sql.functions import year
-# MAGIC from pyspark.sql.functions import *
-# MAGIC from pyspark.sql.functions import col
-# MAGIC TeamlyPlayers = df.select(year("birthday").alias("Born_Year")).groupBy("Born_Year").count().orderBy("Born_Year").sort(col("count").desc())
-# MAGIC
-# MAGIC display(TeamlyPlayers)
+# from datetime import datetime, timedelta
+# from pyspark.sql.functions import year
+# from pyspark.sql.functions import *
+# from pyspark.sql.functions import col
+# TeamlyPlayers = df.select(year("birthday").alias("Born_Year")).groupBy("Born_Year").count().orderBy("Born_Year").sort(col("count").desc())
+
+# display(TeamlyPlayers)
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC delta_table_path = "/playerscsv/players"
-# MAGIC #df.write.format("delta").save(delta_table_path)
-# MAGIC df.write.format("delta").mode("Overwrite").saveAsTable("players_only")  ## Simdi Hive Metastore a kaydoldu
-# MAGIC #df.write.format("delta").option("path", "/mydata").saveAsTable("players_only_1")
+delta_table_path = "/playerscsv/players"
+#df.write.format("delta").save(delta_table_path)
+df.write.format("delta").mode("Overwrite").saveAsTable("players_only")  ## Simdi Hive Metastore a kaydoldu
+#df.write.format("delta").option("path", "/mydata").saveAsTable("players_only_1")
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC
-# MAGIC df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
-# MAGIC
-# MAGIC df1.printSchema()
+df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
+
+df1.printSchema()
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC df1.createOrReplaceTempView("EPL_RECORDS")
+df1.createOrReplaceTempView("EPL_RECORDS")
 
 # COMMAND ----------
 
