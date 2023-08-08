@@ -1,12 +1,18 @@
 # Databricks notebook source
-from pyspark.sql import SparkSession, functions, types, SQLContext
-from pyspark.sql.types import *
-import pyspark.sql.functions as F
-import json
-import pandas as pd
-from pyspark.sql.functions import udf, col
-import re
-from datetime import datetime, timedelta
+# MAGIC %pip install pyspark
+# MAGIC %pip install dlt
+# MAGIC %pip install pandas
+# MAGIC %pip install datetime
+# MAGIC
+# MAGIC from pyspark.sql import SparkSession, functions, types, SQLContext
+# MAGIC from pyspark.sql.types import *
+# MAGIC import pyspark.sql.functions as F
+# MAGIC # import json
+# MAGIC import dlt
+# MAGIC import pandas as pd
+# MAGIC from pyspark.sql.functions import udf, col
+# MAGIC # import re
+# MAGIC from datetime import datetime, timedelta
 
 # COMMAND ----------
 
@@ -69,7 +75,7 @@ df = spark.read.option("encoding", "UTF-8").format('csv').load(
 
 # COMMAND ----------
 
-display(df)
+# display(df)
 
 # COMMAND ----------
 
@@ -87,20 +93,20 @@ df.createOrReplaceTempView("Players")
 
 # COMMAND ----------
 
-delta_table_path = "/playerscsv/players"
+# delta_table_path = "/playerscsv/players"
 #df.write.format("delta").save(delta_table_path)
 df.write.format("delta").mode("Overwrite").saveAsTable("players_only")  ## Simdi Hive Metastore a kaydoldu
 #df.write.format("delta").option("path", "/mydata").saveAsTable("players_only_1")
 
 # COMMAND ----------
 
-df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
+# df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
 
-df1.printSchema()
+# df1.printSchema()
 
 # COMMAND ----------
 
-df1.createOrReplaceTempView("EPL_RECORDS")
+# df1.createOrReplaceTempView("EPL_RECORDS")
 
 # COMMAND ----------
 
