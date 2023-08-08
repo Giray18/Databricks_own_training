@@ -1,10 +1,4 @@
 # Databricks notebook source
-# MAGIC %md
-# MAGIC
-# MAGIC ###Start Notebook
-
-# COMMAND ----------
-
 # MAGIC %pip install pyspark
 # MAGIC %pip install dlt
 # MAGIC %pip install pandas
@@ -27,6 +21,12 @@
 # MAGIC from pyspark.sql.functions import explode
 # MAGIC from functools import reduce
 # MAGIC from pyspark.sql.functions import sum,avg,max,count
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
+# MAGIC ###Start Notebook
 
 # COMMAND ----------
 
