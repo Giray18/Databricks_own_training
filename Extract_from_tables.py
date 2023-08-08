@@ -5,31 +5,33 @@
 
 # COMMAND ----------
 
-print("Execution Started")
-print(f"Notebook Context: {dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson()}")
-
-# COMMAND ----------
-
-# MAGIC %python
+# MAGIC %pip install pyspark
+# MAGIC %pip install dlt
+# MAGIC %pip install pandas
+# MAGIC %pip install datetime
+# MAGIC
 # MAGIC from pyspark.sql import SparkSession, functions, types, SQLContext
 # MAGIC import dlt
+# MAGIC from pyspark.sql.functions import explode
+# MAGIC from pyspark.sql import DataFrame
 # MAGIC from pyspark.sql.functions import *
 # MAGIC from pyspark.sql import DataFrame
 # MAGIC from pyspark.sql.types import *
 # MAGIC import pyspark.sql.functions as F
-# MAGIC import json
 # MAGIC import pandas as pd
 # MAGIC from pyspark.sql.functions import udf, col
-# MAGIC import re
 # MAGIC from datetime import datetime, timedelta
-# MAGIC import re
 # MAGIC import pyspark.sql.functions as F
 # MAGIC from datetime import datetime, timedelta
 # MAGIC from pyspark.sql.types import *
 # MAGIC from pyspark.sql.functions import explode
 # MAGIC from functools import reduce
 # MAGIC from pyspark.sql.functions import sum,avg,max,count
-# MAGIC import pandas as pd
+
+# COMMAND ----------
+
+print("Execution Started")
+print(f"Notebook Context: {dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson()}")
 
 # COMMAND ----------
 
