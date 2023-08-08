@@ -100,6 +100,10 @@ df.write.format("delta").mode("Overwrite").saveAsTable("players_only")  ## Simdi
 
 # COMMAND ----------
 
+spark.sql("DESCRIBE TABLE players_only")
+
+# COMMAND ----------
+
 # df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
 
 # df1.printSchema()

@@ -116,17 +116,17 @@ import pandas as pd
 
 # COMMAND ----------
 
-players_df = spark.read.table('players_only')
+# players_df = spark.read.table('players_only')
  
-if players_df.first() is None:
-    dbutils.notebook.exit("data yooook!!")
+# if players_df.first() is None:
+#     dbutils.notebook.exit("data yooook!!")
 
 # COMMAND ----------
 
-unique_player_names = spark.read.table('hive_metastore.default.unique_player_names')
+# unique_player_names = spark.read.table('hive_metastore.default.unique_player_names')
  
-if unique_player_names.first() is None:
-    dbutils.notebook.exit("data yooook!!")
+# if unique_player_names.first() is None:
+#     dbutils.notebook.exit("data yooook!!")
 
 # COMMAND ----------
 
@@ -226,3 +226,9 @@ TOP10_MOST_PLAYED.write.format("delta").mode("Overwrite").saveAsTable("TOP10_MOS
 # USING DELTA
 # AS SELECT player_name,played_games,row_number() OVER (ORDER BY played_games DESC) Play_Rank FROM players_only_join_removed_nulls  GROUP BY player_name, played_games LIMIT 10;
 
+
+# COMMAND ----------
+
+spark.sql("DESCRIBE TABLE TOP10_MOST_PLAYED")
+spark.sql("DESCRIBE TABLE all_starting_players_agg_2")
+spark.sql("DESCRIBE TABLE all_starting_players")
