@@ -30,8 +30,8 @@
 
 # COMMAND ----------
 
-print("Execution Started")
-print(f"Notebook Context: {dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson()}")
+# print("Execution Started")
+# print(f"Notebook Context: {dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson()}")
 
 # COMMAND ----------
 
@@ -40,11 +40,11 @@ print(f"Notebook Context: {dbutils.notebook.entry_point.getDbutils().notebook().
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC
-# MAGIC # max_EH3_timestamp = players_df.agg(F.max('EventEnqueuedUtcTime').alias('max_EH3_timestamp')).first().max_EH3_timestamp
-# MAGIC exec_started_timestamp = datetime.now()
-# MAGIC print(exec_started_timestamp)
+# %python
+
+# # max_EH3_timestamp = players_df.agg(F.max('EventEnqueuedUtcTime').alias('max_EH3_timestamp')).first().max_EH3_timestamp
+# exec_started_timestamp = datetime.now()
+# print(exec_started_timestamp)
 
 # COMMAND ----------
 
