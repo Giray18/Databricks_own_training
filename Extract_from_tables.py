@@ -59,8 +59,9 @@
 # COMMAND ----------
 
 storageAccount = "training45"
-container = "premier"
-sasKey = "sp=rl&st=2023-08-06T12:17:32Z&se=2023-08-11T20:17:32Z&spr=https&sv=2022-11-02&sr=c&sig=EHz1FFk1BZVQgOh0yq3Yp2Pj6FRyWsJmsEAXXsv1FcM%3D"
+container = "merged"
+sasKey = "?sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2023-08-18T21:34:13Z&st=2023-08-10T13:34:13Z&spr=https,http&sig=oeED0Tjc8AzCyyLrEGVZ3RrewfoeZYLUP4YgqREM%2By0%3D"
+# sp=rl&st=2023-08-06T12:17:32Z&se=2023-08-11T20:17:32Z&spr=https&sv=2022-11-02&sr=c&sig=EHz1FFk1BZVQgOh0yq3Yp2Pj6FRyWsJmsEAXXsv1FcM%3D
 mountPoint = "/mnt/mymountpointname"
  
  
@@ -130,7 +131,7 @@ import pandas as pd
 
 # COMMAND ----------
 
-df1 = spark.read.json("/mnt/mymountpointname/epl_2022_2023_07_02_2023.json",multiLine=True)
+df1 = spark.read.json("/mnt/mymountpointname/merged.json",multiLine=True)
 
 df1.printSchema()
 
